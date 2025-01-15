@@ -9,13 +9,13 @@ from dotenv import load_dotenv
 SERVICE_ACCOUNT_FILE = os.getenv('ACCOUNT_JSON')
 print("SERVICE_ACCOUNT_FILE : ",SERVICE_ACCOUNT_FILE)
 print("SERVICE_ACCOUNT_FILE_type : ",type(SERVICE_ACCOUNT_FILE))
-service_account_info = json.loads(SERVICE_ACCOUNT_FILE)
+# service_account_info = json.loads(SERVICE_ACCOUNT_FILE)
 SCOPES = ['https://www.googleapis.com/auth/calendar']
 CALENDAR_ID = os.getenv('CALENDAR_ID')
 
 def create_service():
     creds = service_account.Credentials.from_service_account_info(
-        service_account_info,
+        SERVICE_ACCOUNT_FILE,
         scopes=SCOPES
     )
     return build('calendar', 'v3', credentials=creds)
