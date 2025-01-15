@@ -1,6 +1,7 @@
 name: Print Environment Variables
 
 on:
+  push:  # 코드가 푸시될 때마다 실행
   workflow_dispatch:  # 수동으로 실행 가능
 
 jobs:
@@ -13,7 +14,8 @@ jobs:
 
       - name: Print repository secrets
         run: |
-          echo "ACCOUNT_JSON=${{ secrets.ACCOUNT_JSON }}"
+          
           echo "CALENDAR_ID=${{ secrets.CALENDAR_ID }}"
           echo "DATABASE_ID=${{ secrets.DATABASE_ID }}"
           echo "NOTION_API_KEY=${{ secrets.NOTION_API_KEY }}"
+          echo "ACCOUNT_JSON=${{ secrets.ACCOUNT_JSON }}"
