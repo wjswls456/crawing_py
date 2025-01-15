@@ -27,8 +27,6 @@ options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) Apple
 # Notion API 키와 데이터베이스 ID를 설정합니다.
 NOTION_API_KEY = os.environ.get('NOTION_API_KEY')
 DATABASE_ID = os.environ.get('DATABASE_ID')
-print(" NOTION_API_KEY :",NOTION_API_KEY)
-print(" DATABASE_ID :",DATABASE_ID)
 
 notion = Client(auth = NOTION_API_KEY)
 
@@ -56,9 +54,9 @@ def fetch_bithumb_latest():
             title = notice.find_element(By.CSS_SELECTOR, ".NoticeContentList_notice-list__link-title__nlmSC").text
             index +=1
 
-            if "에어드랍" in title:
+            if "에어드랍" in title or "기념 거래" in title:
                 link = notice.find_element(By.CSS_SELECTOR, "a").get_attribute("href")
-                link_array.append(link)
+                link_array.append(link)         
 
         return link_array
 
@@ -120,6 +118,7 @@ def fetch_bithumb_latest_detail(link,coin_list):
                 notice = Notice(start_date,end_date , coin_name , event_payout_date,link)
 
                 print("===================1================")
+                print("coin_name : ",coin_name)
 
 
                 # 중복된 코인 이름이 없는 경우
