@@ -5,17 +5,19 @@ from googleapiclient.discovery import build
 from dotenv import load_dotenv
 
 
-# 서비스 계정 키 파일 경로
-SERVICE_ACCOUNT_FILE = os.environ.get('ACCOUNT_JSON')
-print("SERVICE_ACCOUNT_FILE : ",SERVICE_ACCOUNT_FILE)
-print("SERVICE_ACCOUNT_FILE_type : ",type(SERVICE_ACCOUNT_FILE))
+# JSON 파일로부터 서비스 계정 정보를 읽기
+SERVICE_ACCOUNT_FILE = 'account.json'  # 경로가 맞는지 확인
+with open(SERVICE_ACCOUNT_FILE) as f:
+    service_account_info = json.load(f)
+print("SERVICE_ACCOUNT_FILE : ", service_account_info)
+
 # service_account_info = json.loads(SERVICE_ACCOUNT_FILE)
 SCOPES = ['https://www.googleapis.com/auth/calendar']
 CALENDAR_ID = os.environ.get('CALENDAR_ID')
 
 def create_service():
     creds = service_account.Credentials.from_service_account_info(
-        SERVICE_ACCOUNT_FILE,
+        service_account_info,
         scopes=SCOPES
     )
     return build('calendar', 'v3', credentials=creds)
