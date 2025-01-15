@@ -34,9 +34,15 @@ def create_event(event_details, all_day=True):
                 'date': event_details.start,  # 시작 날짜
             },
             'end': {
-                'date': "2025-01-17",  # 종료 날짜
+                'date': event_details.end,  # 종료 날짜
             },
-            'timeZone': 'Asia/Seoul'
+            'timeZone': 'Asia/Seoul',
+            'reminders': {
+            'useDefault': False,
+            'overrides': [
+            {'method': 'popup', 'minutes': 10},  # 10분 전에 팝업 알림
+                ]
+            }
         }
     else:
         event = {
