@@ -25,8 +25,10 @@ options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) Apple
 
 
 # Notion API 키와 데이터베이스 ID를 설정합니다.
-NOTION_API_KEY = os.getenv('NOTION_API_KEY')
-DATABASE_ID = os.getenv('DATABASE_ID')
+NOTION_API_KEY = os.environ.get('NOTION_API_KEY')
+DATABASE_ID = os.environ.get('DATABASE_ID')
+print(" NOTION_API_KEY :",NOTION_API_KEY)
+print(" DATABASE_ID :",DATABASE_ID)
 
 notion = Client(auth = NOTION_API_KEY)
 
