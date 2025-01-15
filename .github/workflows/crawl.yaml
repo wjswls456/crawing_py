@@ -26,10 +26,9 @@ jobs:
 
       - name: Create .env file
         run: |
-          echo "ACCOUNT_JSON=${{ secrets.ACCOUNT_JSON }}" >> .env
           echo "CALENDAR_ID=${{ secrets.CALENDAR_ID }}" >> .env
           echo "DATABASE_ID=${{ secrets.DATABASE_ID }}" >> .env
-          # 필요한 모든 환경 변수를 여기에 추가하세요.
+          echo "NOTION_API_KEY=${{ secrets.NOTION_API_KEY }}" >> .env
 
 
       - name: Run crawl.py

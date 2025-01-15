@@ -28,9 +28,6 @@ options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) Apple
 NOTION_API_KEY = os.getenv('NOTION_API_KEY')
 DATABASE_ID = os.getenv('DATABASE_ID')
 
-print("NOTION_API_KEY : ",NOTION_API_KEY)
-print("DATABASE_ID : ",DATABASE_ID)
-
 notion = Client(auth = NOTION_API_KEY)
 
 
