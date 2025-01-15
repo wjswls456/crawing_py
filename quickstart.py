@@ -9,7 +9,6 @@ from dotenv import load_dotenv
 SERVICE_ACCOUNT_FILE = 'account.json'  # 경로가 맞는지 확인
 with open(SERVICE_ACCOUNT_FILE) as f:
     service_account_info = json.load(f)
-print("SERVICE_ACCOUNT_FILE : ", service_account_info)
 
 # service_account_info = json.loads(SERVICE_ACCOUNT_FILE)
 SCOPES = ['https://www.googleapis.com/auth/calendar']
