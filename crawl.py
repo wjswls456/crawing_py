@@ -103,7 +103,11 @@ def fetch_bithumb_latest_detail(link,coin_list):
                 end_date = period.split("~")[1].split("(")[0]
 
                 target = li_tags[1].text.replace(" ","").replace("대상:기간내","")
-                coin_name =  target.split("를")[0]
+                if "를" in target:
+                    coin_name = target.split("를")[0]
+                elif "을" in target:
+                    coin_name = target.split("을")[0]
+
                 continuous_trading_day = target.split("일")[0][-1]
 
                 event_payout_date = ''.join(re.findall(r'[0-9.]+',li_tags[4].text.replace(" ","").split("(")[0]))
@@ -286,13 +290,13 @@ def get_coin_list():
                         notion_database_coin_name.append(name_value)
     return notion_database_coin_name
 
-# bithumb_site=fetch_bithumb_latest()
+bithumb_site=fetch_bithumb_latest()
 coin_list =get_coin_list()
 
-# for link in bithumb_site:
-#     time.sleep(5)
-#     fetch_bithumb_latest_detail(link,coin_list)
+for link in bithumb_site:
+    time.sleep(5)
+    fetch_bithumb_latest_detail(link,coin_list)
 
-fetch_bithumb_latest_detail("https://feed.bithumb.com/notice/1645411",coin_list)
+
 
 

@@ -5,7 +5,6 @@ from googleapiclient.discovery import build
 from dotenv import load_dotenv
 
 
-load_dotenv()
 # 서비스 계정 키 파일 경로
 SERVICE_ACCOUNT_FILE = os.getenv('ACCOUNT_JSON')
 service_account_info = json.loads(SERVICE_ACCOUNT_FILE)
@@ -76,10 +75,6 @@ def insert_google_calendar_day(event_details):
     event = create_event(event_details, all_day=True)
     return insert_event(event)
 
-if not events:
-    print('이벤트가 없습니다.')
-for event in events:
-    print(f"이벤트 제목: {event['summary']}, 이벤트 ID: {event['id']}")
 
 def insert_google_calendar_time(event_details):
     """특정 시간 이벤트를 추가합니다."""
