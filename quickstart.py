@@ -13,7 +13,7 @@ with open(SERVICE_ACCOUNT_FILE) as f:
 # service_account_info = json.loads(SERVICE_ACCOUNT_FILE)
 SCOPES = ['https://www.googleapis.com/auth/calendar']
 CALENDAR_ID = os.getenv('CALENDAR_ID')
-
+print("CALENDAR_ID: ",CALENDAR_ID)
 def create_service():
     creds = service_account.Credentials.from_service_account_info(
         service_account_info,
