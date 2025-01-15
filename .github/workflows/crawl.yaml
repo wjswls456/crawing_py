@@ -1,8 +1,8 @@
 name: Run crawl.py every 15 minutes
 
 on:
-  # schedule:
-  #   - cron: '*/15 * * * *'  # 매 15분마다 실행
+  schedule:
+    - cron: '*/15 * * * *'  # 매 15분마다 실행
   workflow_dispatch:  # 수동으로 실행할 수 있도록 설정
 
 jobs:
