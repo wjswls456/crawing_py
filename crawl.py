@@ -129,11 +129,17 @@ def fetch_bithumb_latest_detail(link,coin_list):
                     # 구글 캘린더에 추가해야함
                     continuous_trading_day_int = convert_to_int(continuous_trading_day)
                     if continuous_trading_day_int is not None :
+                        print("===================3================")
                         event_payout_calendar = Calendar(convert_to_evening_time(event_payout_date,20),convert_to_evening_time(event_payout_date,21),"빗썸 "+coin_name+"에어 드랍",link)
+                        print("===================4================")
                         insert_google_calendar_time(event_payout_calendar)
-                        calendar = Calendar(convert_to_date(start_date),convert_to_date(end_date),summary,link)
+                        print("===================5================")
+                        calendar = Calendar(convert_to_date(start_date),add_to_date(start_date,convert_to_int(continuous_trading_day)),summary,link)
+                        print("===================6================")
                         google_event_data =insert_google_calendar_day(calendar)
-                        add_to_notion_database(coin_name,summary,convert_to_date(start_date),add_to_date(start_date,continuous_trading_day-1),google_event_data['id'])
+                        print("===================7================")
+                        add_to_notion_database(coin_name,summary,convert_to_date(start_date),add_to_date(start_date,convert_to_int(continuous_trading_day)-1),google_event_data['id'])
+                        print("===================8================")
                         
                             
     except Exception as e:
@@ -291,13 +297,13 @@ def get_coin_list():
                         notion_database_coin_name.append(name_value)
     return notion_database_coin_name
 
-bithumb_site=fetch_bithumb_latest()
+# bithumb_site=fetch_bithumb_latest()
 coin_list =get_coin_list()
 
-for link in bithumb_site:
-    time.sleep(5)
-    fetch_bithumb_latest_detail(link,coin_list)
+# for link in bithumb_site:
+#     time.sleep(5)
+#     fetch_bithumb_latest_detail(link,coin_list)
 
-
+fetch_bithumb_latest_detail("https://feed.bithumb.com/notice/1645416",coin_list)
 
 

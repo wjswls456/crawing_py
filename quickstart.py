@@ -32,7 +32,7 @@ def create_event(event_details, all_day=True):
                 'date': event_details.start,  # 시작 날짜
             },
             'end': {
-                'date': event_details.end,  # 종료 날짜
+                'date': "2025-01-17",  # 종료 날짜
             },
             'timeZone': 'Asia/Seoul'
         }
@@ -51,9 +51,9 @@ def create_event(event_details, all_day=True):
             },
             'reminders':{
                 'useDefault': False,
-                'overrides':{
+                'overrides':[
                     {'method': 'popup', 'minutes': 10},
-                }
+                ]
             }
         }
     return event
@@ -61,13 +61,10 @@ def create_event(event_details, all_day=True):
 def insert_event(event):
     
     service = create_service()
-    print(event)
+    print("event : ",event)
     
     try:
         event_response = service.events().insert(calendarId=CALENDAR_ID, body=event).execute()
-        print('이벤트가 추가되었습니다.')
-        print("event_response['id'] : ", event_response['id'])
-        print(event_response)
         return event_response
     except Exception as e:
         print(f'이벤트 추가 중 오류 발생: {e}')
@@ -81,7 +78,9 @@ def insert_google_calendar_day(event_details):
 
 def insert_google_calendar_time(event_details):
     """특정 시간 이벤트를 추가합니다."""
+    
     event = create_event(event_details, all_day=False)
+    print("===================4-1================")
     return insert_event(event)
 
 
