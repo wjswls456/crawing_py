@@ -5,6 +5,8 @@ from googleapiclient.discovery import build
 from dotenv import load_dotenv
 
 
+
+load_dotenv()
 # JSON 파일로부터 서비스 계정 정보를 읽기
 SERVICE_ACCOUNT_FILE = 'account.json'  # 경로가 맞는지 확인
 with open(SERVICE_ACCOUNT_FILE) as f:
