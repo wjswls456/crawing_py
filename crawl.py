@@ -297,13 +297,13 @@ def get_coin_list():
                         notion_database_coin_name.append(name_value)
     return notion_database_coin_name
 
-# bithumb_site=fetch_bithumb_latest()
+bithumb_site=fetch_bithumb_latest()
 coin_list =get_coin_list()
 
-# for link in bithumb_site:
-#     time.sleep(5)
-#     fetch_bithumb_latest_detail(link,coin_list)
+for link in bithumb_site:
+    time.sleep(5)
+    fetch_bithumb_latest_detail(link,coin_list)
 
-fetch_bithumb_latest_detail("https://feed.bithumb.com/notice/1645416",coin_list)
+
 
 
