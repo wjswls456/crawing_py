@@ -1,0 +1,34 @@
+name: Run crawl.py every 15 minutes
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'  # 매 15분마다 실행
+  workflow_dispatch:  # 수동으로 실행할 수 있도록 설정
+
+jobs:
+  run-crawler:
+    runs-on: ubuntu-latest
+    container:
+      image: wjswls456456/crawing_python:latest
+
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # - name: Set up Python
+      #   uses: actions/setup-python@v2
+      #   with:
+      #     python-version: '3.9'  # 원하는 Python 버전 설정
+
+      - name: Create .env file
+        run: |
+          echo "ACCOUNT_JSON=${{ secrets.ACCOUNT_JSON }}" >> .env
+          echo "CALENDAR_ID=${{ secrets.CALENDAR_ID }}" >> .env
+          echo "DATABASE_ID=${{ secrets.DATABASE_ID }}" >> .env
+          echo "NOTION_API_KEY=${{ secrets.NOTION_API_KEY }}" >> .env
+          # 필요한 모든 환경 변수를 여기에 추가하세요.
+
+
+      - name: Run crawl.py
+        run: python crawl.py  # crawl.py 실행
