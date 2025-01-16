@@ -283,7 +283,7 @@ def get_coin_list():
     response = notion.databases.query(
          DATABASE_ID,
          sort=[{"property": "순번", "direction": "aescending"}],
-         page_size=10
+         page_size=20
          )
 
 
