@@ -128,18 +128,21 @@ def fetch_bithumb_latest_detail(link,coin_list):
                     # 노션에 값을 추가 해야함
                     # 구글 캘린더에 추가해야함
                     continuous_trading_day_int = convert_to_int(continuous_trading_day)
-                    if continuous_trading_day_int is not None :
-                        print("===================3================")
-                        event_payout_calendar = Calendar(convert_to_evening_time(event_payout_date,20),convert_to_evening_time(event_payout_date,21),"빗썸 "+coin_name+"에어 드랍",link)
-                        print("===================4================")
-                        insert_google_calendar_time(event_payout_calendar)
-                        print("===================5================")
-                        calendar = Calendar(convert_to_date(start_date),add_to_date(start_date,convert_to_int(continuous_trading_day)),summary,link)
-                        print("===================6================")
-                        google_event_data =insert_google_calendar_day(calendar)
-                        print("===================7================")
-                        add_to_notion_database(coin_name,summary,convert_to_date(start_date),add_to_date(start_date,convert_to_int(continuous_trading_day)-1),google_event_data['id'])
-                        print("===================8================")
+                    if continuous_trading_day_int is None:
+                        print("유효하지 않은 continuous_trading_day, 건너뜁니다.")
+                        return  # 또는 continue (for 루프 안이라면)
+
+                    print("===================3================")
+                    event_payout_calendar = Calendar(convert_to_evening_time(event_payout_date,20),convert_to_evening_time(event_payout_date,21),"빗썸 "+coin_name+"에어 드랍",link)
+                    print("===================4================")
+                    insert_google_calendar_time(event_payout_calendar)
+                    print("===================5================")
+                    calendar = Calendar(convert_to_date(start_date),add_to_date(start_date,convert_to_int(continuous_trading_day)),summary,link)
+                    print("===================6================")
+                    google_event_data =insert_google_calendar_day(calendar)
+                    print("===================7================")
+                    add_to_notion_database(coin_name,summary,convert_to_date(start_date),add_to_date(start_date,convert_to_int(continuous_trading_day)-1),google_event_data['id'])
+                    print("===================8================")
                         
                             
     except Exception as e:
